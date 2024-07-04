@@ -12,7 +12,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        $course = Curso::all();
+        return view('cursos.index', compact('course'));
     }
 
     /**
@@ -31,6 +32,9 @@ class CursoController extends Controller
         $course = new Curso();
         $course->nombre = $request->input('nombre');
         $course->duracion = $request->input('duracion');
+        if($request->hasFile('imagen')){
+            $course->imagen = $request->file('imagen')->store('public/cursos');
+        }
         $course->save();
         return 'Guardado con éxito';
     }
@@ -40,7 +44,8 @@ class CursoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $course = Curso::find($id);
+        return view('cursos.show', compact('course'));
     }
 
     /**
