@@ -67,7 +67,7 @@ class CursoController extends Controller
         if ($request->hasFile('imagen')){ //si desde ese campo viene un archivo hacer:
             $course->imagen = $request->file('imagen')->store('public/cursos');
             $course->save();
-            return 'Curso actualizado';
+            return 'Curso esta actualizado';
         }
     }
 
